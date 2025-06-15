@@ -6,19 +6,18 @@ import { enhancedimageAPI } from "../utils/enhanceimageApi";
 const Home = () => {
     const [uploadImage, setUploadImage] = useState(null);
     const [enhancedImage, setEnhancedImage] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setloading] = useState(false);
 
     const UploadImageHandler = async (file) => {
         setUploadImage(URL.createObjectURL(file));
-        setLoading(true);
+        setloading(true);
         try {
-            const enhancedURL = await enhancedimageAPI(file); // assuming this returns { image: "url" }
-            setEnhancedImage(enhancedURL.image); // set just the image URL
+            const enhancedURL = await enhancedimageAPI(file);
+            setEnhancedImage(enhancedURL);
+            setloading(false);
         } catch (error) {
-            console.error("Enhancement error:", error);
+            console.log(error);
             alert("Error while enhancing the image. Please try again later.");
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -28,10 +27,17 @@ const Home = () => {
             <ImagePreview
                 loading={loading}
                 uploaded={uploadImage}
-                enhanced={enhancedImage} // use directly here (not .image)
+                enhanced={enhancedImage?.image}
             />
         </>
     );
 };
 
 export default Home;
+
+
+
+
+
+
+

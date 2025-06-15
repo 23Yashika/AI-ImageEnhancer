@@ -2,63 +2,141 @@ import React from 'react'
 
 const Loading = () => {
   return (
-    <div className='flex justify-center items-center h-full relative'>
-      {/* Central Loading Animation */}
-      <div className="relative">
-        {/* Outer Geometric Ring */}
-        <div className='animate-spin border-4 border-black border-t-red-600 border-r-blue-600 border-b-yellow-400 w-16 h-16 absolute'></div>
+    <div className='flex justify-center items-center h-full'>
+      <div className='relative'>
+        {/* Outer rotating ring */}
+        <div className='absolute inset-0 w-20 h-20 rounded-full border-4 border-transparent border-t-cyan-400 border-r-cyan-400 animate-spin'
+             style={{
+               filter: 'drop-shadow(0 0 10px rgba(0, 255, 255, 0.6))',
+               animation: 'spinOuter 2s linear infinite'
+             }}>
+        </div>
         
-        {/* Inner Geometric Elements */}
-        <div className="w-16 h-16 flex items-center justify-center">
-          <div className="relative">
-            {/* Rotating Squares */}
-            <div className="absolute inset-0 animate-pulse">
-              <div className="w-3 h-3 bg-red-600 absolute top-0 left-0 animate-bounce"></div>
-              <div className="w-3 h-3 bg-blue-600 absolute top-0 right-0 rounded-full animate-bounce delay-100"></div>
-              <div className="w-3 h-3 bg-yellow-400 absolute bottom-0 left-0 transform rotate-45 animate-bounce delay-200"></div>
-              <div className="w-3 h-3 bg-black absolute bottom-0 right-0 animate-bounce delay-300"></div>
-            </div>
-            
-            {/* Central Element */}
-            <div className="w-6 h-6 bg-white border-2 border-black flex items-center justify-center animate-pulse">
-              <div className="w-2 h-2 bg-gradient-to-br from-red-600 to-blue-600"></div>
-            </div>
+        {/* Middle rotating ring */}
+        <div className='absolute inset-2 w-16 h-16 rounded-full border-4 border-transparent border-t-purple-400 border-l-purple-400'
+             style={{
+               filter: 'drop-shadow(0 0 8px rgba(147, 51, 234, 0.6))',
+               animation: 'spinMiddle 1.5s linear infinite reverse'
+             }}>
+        </div>
+        
+        {/* Inner rotating ring */}
+        <div className='w-20 h-20 rounded-full border-4 border-transparent border-t-pink-400 border-b-pink-400'
+             style={{
+               filter: 'drop-shadow(0 0 6px rgba(236, 72, 153, 0.6))',
+               animation: 'spinInner 1s linear infinite'
+             }}>
+        </div>
+        
+        {/* Central pulsing core */}
+        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full'
+             style={{
+               background: 'radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(0, 255, 255, 0.4))',
+               boxShadow: '0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4)',
+               animation: 'corePulse 1s ease-in-out infinite alternate'
+             }}>
+        </div>
+        
+        {/* Orbiting particles */}
+        {[0, 1, 2, 3].map(i => (
+          <div
+            key={i}
+            className='absolute w-2 h-2 rounded-full'
+            style={{
+              background: `linear-gradient(45deg, ${
+                i % 2 === 0 ? '#00ffff' : '#ff00ff'
+              }, ${i % 2 === 0 ? '#ffff00' : '#ff0080'})`,
+              boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(0, 255, 255, 0.8)' : 'rgba(255, 0, 255, 0.8)'}`,
+              animation: `orbit${i} ${2 + i * 0.5}s linear infinite`,
+              transformOrigin: '40px 40px'
+            }}
+          />
+        ))}
+        
+        {/* Scanning effect */}
+        <div className='absolute inset-0 w-20 h-20 rounded-full overflow-hidden pointer-events-none'>
+          <div className='absolute w-full h-0.5 bg-gradient-to-r from-transparent via-white to-transparent opacity-80'
+               style={{
+                 animation: 'loadingScan 2s linear infinite',
+                 transformOrigin: 'center'
+               }}>
           </div>
         </div>
       </div>
       
-      {/* Orbiting Elements */}
-      <div className="absolute inset-0 animate-spin" style={{animationDuration: '3s'}}>
-        <div className="relative w-full h-full">
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2">
-            <div className="w-2 h-2 bg-red-600"></div>
-          </div>
-          <div className="absolute right-0 top-1/2 transform translate-x-2 -translate-y-1/2">
-            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-          </div>
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2">
-            <div className="w-2 h-2 bg-yellow-400 transform rotate-45"></div>
-          </div>
-          <div className="absolute left-0 top-1/2 transform -translate-x-2 -translate-y-1/2">
-            <div className="w-2 h-2 bg-black"></div>
-          </div>
-        </div>
+      {/* Loading text */}
+      <div className='absolute mt-24 text-center'>
+        <p className='text-cyan-300 font-mono text-sm tracking-widest'
+           style={{
+             textShadow: '0 0 10px rgba(0, 255, 255, 0.6)',
+             animation: 'textBlink 1.5s ease-in-out infinite'
+           }}>
+          PROCESSING
+          <span style={{ animation: 'dotAnimation 1.5s ease-in-out infinite' }}>
+            ...
+          </span>
+        </p>
       </div>
-      
-      {/* Loading Text */}
-      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex items-center gap-1">
-          <div className="w-1 h-1 bg-red-600 animate-pulse"></div>
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-black">Processing</span>
-          <div className="w-1 h-1 bg-blue-600 animate-pulse delay-100 rounded-full"></div>
-        </div>
-      </div>
-      
-      {/* Corner Accent Elements */}
-      <div className="absolute -top-4 -left-4 w-2 h-2 bg-red-600 opacity-50 animate-ping"></div>
-      <div className="absolute -top-4 -right-4 w-2 h-2 bg-blue-600 opacity-50 animate-ping delay-75 rounded-full"></div>
-      <div className="absolute -bottom-4 -left-4 w-2 h-2 bg-yellow-400 opacity-50 animate-ping delay-150 transform rotate-45"></div>
-      <div className="absolute -bottom-4 -right-4 w-2 h-2 bg-black opacity-50 animate-ping delay-200"></div>
+
+      <style jsx>{`
+        @keyframes spinOuter {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes spinMiddle {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(-360deg); }
+        }
+        
+        @keyframes spinInner {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes corePulse {
+          0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+          100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+        }
+        
+        @keyframes orbit0 {
+          0% { transform: rotate(0deg) translateX(35px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(35px) rotate(-360deg); }
+        }
+        
+        @keyframes orbit1 {
+          0% { transform: rotate(90deg) translateX(30px) rotate(-90deg); }
+          100% { transform: rotate(450deg) translateX(30px) rotate(-450deg); }
+        }
+        
+        @keyframes orbit2 {
+          0% { transform: rotate(180deg) translateX(25px) rotate(-180deg); }
+          100% { transform: rotate(540deg) translateX(25px) rotate(-540deg); }
+        }
+        
+        @keyframes orbit3 {
+          0% { transform: rotate(270deg) translateX(20px) rotate(-270deg); }
+          100% { transform: rotate(630deg) translateX(20px) rotate(-630deg); }
+        }
+        
+        @keyframes loadingScan {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes textBlink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+        
+        @keyframes dotAnimation {
+          0% { content: ''; }
+          25% { content: '.'; }
+          50% { content: '..'; }
+          75% { content: '...'; }
+          100% { content: ''; }
+        }
+      `}</style>
     </div>
   )
 }
