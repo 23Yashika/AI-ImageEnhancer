@@ -78,65 +78,8 @@ const Loading = () => {
         </p>
       </div>
 
-      <style jsx>{`
-        @keyframes spinOuter {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes spinMiddle {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(-360deg); }
-        }
-        
-        @keyframes spinInner {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes corePulse {
-          0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-          100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
-        }
-        
-        @keyframes orbit0 {
-          0% { transform: rotate(0deg) translateX(35px) rotate(0deg); }
-          100% { transform: rotate(360deg) translateX(35px) rotate(-360deg); }
-        }
-        
-        @keyframes orbit1 {
-          0% { transform: rotate(90deg) translateX(30px) rotate(-90deg); }
-          100% { transform: rotate(450deg) translateX(30px) rotate(-450deg); }
-        }
-        
-        @keyframes orbit2 {
-          0% { transform: rotate(180deg) translateX(25px) rotate(-180deg); }
-          100% { transform: rotate(540deg) translateX(25px) rotate(-540deg); }
-        }
-        
-        @keyframes orbit3 {
-          0% { transform: rotate(270deg) translateX(20px) rotate(-270deg); }
-          100% { transform: rotate(630deg) translateX(20px) rotate(-630deg); }
-        }
-        
-        @keyframes loadingScan {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes textBlink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-        
-        @keyframes dotAnimation {
-          0% { content: ''; }
-          25% { content: '.'; }
-          50% { content: '..'; }
-          75% { content: '...'; }
-          100% { content: ''; }
-        }
-      `}</style>
+
+      
     </div>
   )
 }

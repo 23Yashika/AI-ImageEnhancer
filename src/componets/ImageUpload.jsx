@@ -123,24 +123,7 @@ const ImageUpload = (props) => {
         </label>
       </div>
 
-      <style jsx>{`
-        @keyframes uploadScan {
-          0% { top: 0%; opacity: 1; }
-          50% { opacity: 1; }
-          100% { top: 100%; opacity: 0; }
-        }
-        
-        @keyframes textShimmer {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes dotPulse {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.3); }
-        }
-      `}</style>
+      
     </div>
   );
 };
